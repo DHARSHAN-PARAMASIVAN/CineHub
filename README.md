@@ -1,5 +1,7 @@
 # CineHub — Professional Movie Explorer Portal
 
+🔗 **Live Demo**: [https://dharshan-paramasivan.github.io/CineHub/](https://dharshan-paramasivan.github.io/CineHub/)
+
 CineHub is a high-fidelity, fullstack web application designed for browsing, searching, and inspecting movie records. It features a minimalist typographic brand design, light-accent color schemes, fully interactive responsive touch pagination, and fluid micro-animations.
 
 ---
