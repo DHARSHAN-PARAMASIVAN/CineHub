@@ -95,10 +95,11 @@ function MoviesListPage({ onSelectMovie }) {
   useEffect(() => {
     async function fetchMovies() {
       try {
-        const res = await fetch('/api/movies');
+        const res = await fetch('./movies_metadata.json');
         if (!res.ok) throw new Error(`Server error: ${res.status}`);
         const payload = await res.json();
-        setMovies(payload.data);
+        const data = Array.isArray(payload) ? payload : (payload.data || []);
+        setMovies(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -282,10 +283,13 @@ function MovieDetailPage({ movieId, onBack }) {
   useEffect(() => {
     async function fetchMovie() {
       try {
-        const res = await fetch(`/api/movies/${movieId}`);
+        const res = await fetch('./movies_metadata.json');
         if (!res.ok) throw new Error(`Server error: ${res.status}`);
         const payload = await res.json();
-        setMovie(payload.data);
+        const moviesList = Array.isArray(payload) ? payload : (payload.data || []);
+        const found = moviesList.find((m) => m.id === Number(movieId));
+        if (!found) throw new Error('Movie not found');
+        setMovie(found);
       } catch (err) {
         setError(err.message);
       } finally {
